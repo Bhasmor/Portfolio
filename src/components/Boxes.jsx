@@ -5,8 +5,14 @@ function Box(props) {
     // This reference gives us direct access to the THREE.Mesh object
     const ref = useRef()
     // Hold state for hovered and clicked events
-    useFrame((state, delta) => (ref.current.rotation.x = props.y/1000))
-    useFrame((state, delta) => (ref.current.rotation.y = props.x/1000))
+    if(props.y === undefined && props.x === undefined) {
+    useFrame((state, delta) => (ref.current.rotation.x = 0))
+    useFrame((state, delta) => (ref.current.rotation.y = 0))
+    }
+    else {
+        useFrame((state, delta) => (ref.current.rotation.x = props.y/1000))
+        useFrame((state, delta) => (ref.current.rotation.y = props.x/1000))
+    }
     // Return the view, these are regular Threejs elements expressed in JSX
     return (
       <mesh
@@ -15,7 +21,7 @@ function Box(props) {
         scale={.5}
         >
         <boxGeometry args={[1, 1, 1]} />
-        <meshStandardMaterial color={'orange'} />
+        <meshStandardMaterial color={'#286f6c'} />
       </mesh>
     )
   }
@@ -29,6 +35,11 @@ export default function Boxes(props) {
             <Box position={[2, 1.5, 1]} x={props.x} y={props.y}/>
             <Box position={[-3, 1, 1]} x={props.x} y={props.y}/>
             <Box position={[1, 0, 1]} x={props.x} y={props.y}/>
+            <Box position={[4, 0, 1]} x={props.x} y={props.y}/>
+            <Box position={[-2, 2, 1]} x={props.x} y={props.y}/>
+            <Box position={[-2.5, -2, 1]} x={props.x} y={props.y}/>
+            <Box position={[-4.5, -1, 1]} x={props.x} y={props.y}/>
+            <Box position={[-1.5, .5, 1]} x={props.x} y={props.y}/>
     </Canvas>
   )
 }
