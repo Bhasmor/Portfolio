@@ -5,7 +5,7 @@ export default function Header() {
   return (
     <div className="header">
         <div className='logo'>
-            <h2>Ahmet</h2>
+            Ahmet
         </div>
         <div className='nav'>
             <ul className='nav-ul'>
